@@ -1,0 +1,24 @@
+ion-title{
+    text-align: center;
+}
+ion-content{
+    --ion-background-color:#EDECF9 !important;
+  }
+
+.person{
+    p{
+        text-align: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+}
+
+p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 16px;
+        position: relative;
+        top:20px;
+        
+      }

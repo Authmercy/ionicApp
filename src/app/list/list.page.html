@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title justify-content-center>Close to me </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+  <ion-col size="6" class="element">
+    <ion-badge color="light" class="custom-badge"  [routerLink]="['/acote']">
+      <ion-icon name="map-outline"></ion-icon> MAP
+    </ion-badge>
+  </ion-col>
+  <ion-col size="6" class="element">
+    <ion-badge color="light" class="custom-badge"  [routerLink]="['/list']">
+      <ion-icon name="list-outline"></ion-icon>LIST
+    </ion-badge> </ion-col></div>
+
+<div >
+  <ion-list *ngIf="!pending">
+
+    <ion-item *ngFor="let item of [1,2,3,4,5,6]  ">
+      <ion-skeleton-text animated style="width: 20%">
+        <img src="" height="90px" /></ion-skeleton-text>
+
+      <ion-label>
+        <h2><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></h2>
+        <p><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></p>
+        <p><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngIf="pending">
+
+    <ion-item *ngFor="let item of liste">
+      <ion-avatar>
+        <img src="assets/images/zinga.jpg" height="90px" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.properties.name}}<ion-icon name="heart-outline"></ion-icon></h2>
+        <p> {{item.properties.formatted}}</p>
+        <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
+
+      </ion-label>
+      <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir
+        +</ion-button>
+    </ion-item>
+
+  </ion-list>
+
+</div>
+
+</ion-content>

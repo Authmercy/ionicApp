@@ -1,0 +1,22 @@
+[
+    {
+        "id" : 1,
+        "titre" :"Cameroun",
+        "path" : "assets/images/cameroun.png"
+    },
+    {
+        "id" : 2,
+        "titre" :"Afrique du sud ",
+        "path" : "assets/images/afrique du sud.jpg"
+    },
+   {
+        "id" : 3,
+        "titre" :"Côte_d'Ivoire",
+        "path" : "assets/images/Côte_dIvoire.jpg"
+   },
+   {
+        "id" : 4,
+        "titre" :"Nigeria",
+        "path" : "assets/images/Nigeria.jpg"
+   }
+]

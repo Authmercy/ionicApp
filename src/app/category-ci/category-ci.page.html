@@ -1,0 +1,179 @@
+<ion-content>
+
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="accueil"></ion-back-button>
+      </ion-buttons>
+         <ion-searchbar placeholder="Rechercher" ></ion-searchbar>
+        
+       
+       
+      </ion-toolbar>
+    </ion-header>
+<div *ngIf="id==1"> 
+   <div class="container">
+    <ion-col size="3" class="element">
+      <ion-badge color="light" class="custom-badge"  (click)="hotel()" >
+        <ion-icon name="bed-outline"></ion-icon> Hotels
+      </ion-badge>
+    </ion-col>
+    <ion-col size="3" class="element">
+      <ion-badge color="light" class="custom-badge"  (click)="Restaurant()">
+        <ion-icon name="restaurant-outline"></ion-icon> Restaurant
+      </ion-badge>
+    </ion-col>
+    <ion-col size="3" class="element">
+      <ion-badge color="light" class="custom-badge" (click)="marche()">
+        <ion-icon name="card-outline"></ion-icon> Market
+      </ion-badge>
+    </ion-col>
+    <ion-col size="3" class="element">
+      <ion-badge color="light" class="custom-badge" (click)="loisir()">
+        <ion-icon name="fast-food-outline"></ion-icon> Fun
+      </ion-badge>
+    </ion-col>
+  </div>
+
+  <div *ngIf="cat==='hotel'">
+  <ion-list *ngIf="!pending">
+      
+    <ion-item  *ngFor="let item of [1,2,3,4,5,6]  ">  
+      <ion-skeleton-text animated style ="width: 20%" >
+    <img src = "" height="90px"/></ion-skeleton-text>
+  
+        <ion-label>
+          <h2><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></h2>
+          <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+          <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+    
+
+    <ion-list *ngIf="pending">
+      
+      <ion-item *ngFor="let item of listhotel ">  
+      <ion-avatar>
+      <img src = "assets/images/plage.jpg" height="90px"/>
+      </ion-avatar>
+          <ion-label>
+            <h2>{{item.properties.name}}<ion-icon name="heart-outline"></ion-icon></h2>
+            <p> {{item.properties.formatted}}</p>
+            <p>{{item.properties.datasource.raw.stars}} <ion-icon name="star"> </ion-icon> </p>
+         
+            <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
+          </ion-label>
+          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+    <div *ngIf="cat==='restaurant'">
+
+      <ion-list *ngIf="!pending">
+      
+        <ion-item  *ngFor="let item of [1,2,3,4,5,6]  ">  
+          <ion-skeleton-text animated style ="width: 20%" >
+        <img src = "" height="90px"/></ion-skeleton-text>
+      
+            <ion-label>
+              <h2><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></h2>
+              <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+              <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+            </ion-label>
+          </ion-item>
+    
+        </ion-list>
+        
+    <ion-list *ngIf="pending">
+      
+      <ion-item *ngFor="let item of listRestaurant">  
+      <ion-avatar>
+      <img src = "assets/images/socrate.webp" height="90px"/>
+      </ion-avatar>
+          <ion-label>
+            <h2>{{item.properties.name}}<ion-icon name="heart-outline"></ion-icon></h2>
+            <p> {{item.properties.formatted}}</p>
+            <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
+        
+          </ion-label>
+          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <div *ngIf="cat==='loisir'">
+    <ion-list *ngIf="!pending">
+      
+      <ion-item  *ngFor="let item of [1,2,3,4,5,6]  ">  
+        <ion-skeleton-text animated style ="width: 20%" >
+      <img src = "" height="90px"/></ion-skeleton-text>
+    
+          <ion-label>
+            <h2><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></h2>
+            <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+            <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+          </ion-label>
+        </ion-item>
+  
+      </ion-list>
+      <ion-list *ngIf="pending">
+        <ion-item  *ngFor="let item of listLoisir">  
+        
+        <img src = "assets/images/garden.jpg" height="90px"/>
+            <ion-label>
+      
+              <h2>{{item.properties.name}}</h2>
+              <p>{{item.properties.formatted}}</p>
+              <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
+        
+            </ion-label>
+            <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+          </ion-item>
+  
+        </ion-list>
+      </div>
+      <div *ngIf="cat==='supermarche'">
+        <ion-list *ngIf="!pending">
+      
+          <ion-item  *ngFor="let item of [1,2,3,4,5,6]  ">  
+            <ion-skeleton-text animated style ="width: 20%" >
+          <img src = "" height="90px"/></ion-skeleton-text>
+        
+              <ion-label>
+                <h2><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></h2>
+                <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+                <p><ion-skeleton-text animated style ="width: 80%"></ion-skeleton-text></p>
+              </ion-label>
+            </ion-item>
+      
+          </ion-list>
+          
+        <ion-list>
+          <ion-item *ngFor="let item of listSupermarche   ">  
+            <ion-avatar>
+            <img src = "assets/images/plage.jpg" height="90px"/>
+            </ion-avatar>
+                <ion-label>
+          
+                  <h2>{{item.properties.name}}</h2>
+                  <p>{{item.properties.formatted}}</p>
+                  <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
+        
+                </ion-label>
+                <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+              </ion-item>
+      
+            </ion-list>
+          </div>
+
+        </div>
+      
+    
+
+</ion-content>

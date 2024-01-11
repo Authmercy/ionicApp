@@ -1,0 +1,161 @@
+
+ 
+
+ion-toolbar {
+    background: #848FF2;
+  } 
+  
+  ion-content{
+    --ion-background-color:#EDECF9 !important;
+  }
+  ion-back-button{
+    margin-top: 15px;
+  }
+  
+  ion-searchbar {
+    width: 90%;
+    font-size: 1rem;
+    margin-top: 13px;
+    margin-left: auto;
+    margin-right: auto;
+  
+  
+  }
+  ion-item{
+    height: 120px;
+  }
+  
+  swiper-container {
+  
+    
+    margin-top: 30px;
+  
+  
+  }
+  .pagination{
+    
+    margin-top: 80px;
+   
+  }
+  
+  ion-badge {
+    padding: 8px 0;
+    border-radius: 18px;
+    color: #8c8c8c;
+    border: 1px solid #8c8c8c;
+    width: 100%;
+    text-align: center;
+  
+  
+  
+  }
+  ion-icon {
+    color : #6874E1;
+  }
+  .img{
+    background-color: #fff;
+      margin-top: 10px;
+      box-shadow: rgba(0, 0, 0, 0.15 )1.95px 1.95px 2.6px;
+      height: auto;
+      display: grid;
+      grid-template-columns: 40% 35% 15% 10%;
+      border-end-end-radius: 15px;
+      padding: 10px;
+      height: auto;
+      width: 100%;
+        
+   
+  
+  }
+  .image{
+    padding: 10px;
+  
+    height: auto;
+    width: 100%;
+  
+  }
+  .h3{
+  
+    margin-right: 10px;
+    justify-self: center;
+    color : #6874E1;
+  }
+  .orderId{
+    
+    p{
+      color :#a1a18b
+    }
+  }
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .custom-button {
+    flex-basis: 25%; /* Ajustez selon vos besoins */
+    margin-bottom: 15px; /* Ajustez selon vos besoins */
+    width: 5px; /* Ajustez selon vos besoins */
+    height: 5px; /* Ajustez selon vos besoins */
+    font-size: 10px; /* Ajustez selon vos besoins */
+    margin-right: auto;
+  }
+  
+  @media (max-width: 200px) {
+    .custom-button {
+      flex-basis: 15%; 
+    }
+  }
+  .container {
+    display: flex;
+    font-size: 10px; 
+    padding: 3%;
+    }
+  
+  
+  .container .element {
+    margin-left: auto;
+  }
+  ion-avatar {
+    --border-radius: 4px;
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+    
+  }
+  ion-label {
+    h2 {
+      font-size: 20px; 
+      margin-left:3px;
+      
+  
+  
+    p {
+      font-size: 18px; 
+    }
+    }
+  }
+  
+  ion-button{
+    margin-top: auto;
+  }
+  p{
+    ion-icon{
+      color : #aabe14;
+  }
+    }
+   h2{
+    ion-icon{
+      color:#be141496;
+      
+     
+    }
+   
+   }
+   ion-item{
+   ion-icon{
+   font-size:20px
+  }
+   }
+    
+  
