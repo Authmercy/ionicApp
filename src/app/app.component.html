@@ -1,18 +1,36 @@
 <ion-app>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="accueil" >
-        <ion-icon name="home"></ion-icon>
-        Accueil
-      </ion-tab-button>
-      <ion-tab-button tab="acote" >
-        <ion-icon name="location"></ion-icon>
-        Moi
-      </ion-tab-button>
-      <ion-tab-button tab="apropos"  >
-        <ion-icon name="alert-circle"></ion-icon>
-        A propos
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-app>
+
+  <ion-split-pane contentId="main-content">
+
+  <ion-menu contentId="main-content">
+    <ion-content class="ion-padding">
+ 
+  
+      <ion-header>
+<ion-toolbar>
+  <ion-title>Menu</ion-title>
+</ion-toolbar>
+        
+        
+      </ion-header>
+  
+        <ion-menu-toggle>
+          <ion-list>
+          <ion-item [routerLink]="['accueil']">Home</ion-item>
+          <ion-item [routerLink]="['categorie']">Category</ion-item>
+          <ion-item [routerLink]="['acote']">A cote de moi</ion-item>
+          <ion-item [routerLink]="['apropos']">A propos</ion-item>
+          
+          <ion-item [routerLink]="['home']">Deconnexion</ion-item>
+          
+        </ion-list>
+        </ion-menu-toggle>
+    
+
+
+</ion-content>
+
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane></ion-app>

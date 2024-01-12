@@ -6,10 +6,8 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: '',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+
+  
 
 
  
@@ -63,13 +61,31 @@ const routes: Routes = [
     path: 'acote',
     loadChildren: () => import('./acote/acote.module').then( m => m.AcotePageModule)
   },
-  {
-    path: 'onglet',
-    loadChildren: () => import('./onglet/onglet.module').then( m => m.OngletPageModule)
-  },
+  
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
+  },
+  
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'categorie',
+    loadChildren: () => import('./categorie/categorie.module').then( m => m.CategoriePageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./onglets/onglets.module').then( m => m.OngletsPageModule)
+  },
+  {
+    path: 'onglets',
+    loadChildren: () => import('./onglets/onglets.module').then( m => m.OngletsPageModule)
+  },
+  {
+    path: 'trajet',
+    loadChildren: () => import('./trajet/trajet.module').then( m => m.TrajetPageModule)
   },
 ];
 

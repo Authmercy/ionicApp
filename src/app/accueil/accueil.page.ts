@@ -15,10 +15,6 @@ export class AccueilPage implements OnInit {
   
   ngOnInit() {
   }
-  getnom (obj: any){
-    localStorage.setItem('key', JSON.stringify(obj)) 
-  
-   
-  }
+ 
 
 }

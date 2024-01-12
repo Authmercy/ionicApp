@@ -1,0 +1,41 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button   slot="start" autoHide="false"></ion-menu-button>
+    <ion-title justify-content-center>Category </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  
+ <swiper-container [navigation]="true" [pagination]="{ clickable: true }" [autoplay]="{ delay: 3000 }" #swiper>
+    <swiper-slide *ngFor="let image of images">
+      <img [src]="image.src" />
+    </swiper-slide>
+  </swiper-container>
+  <ion-card-header>
+   
+    
+  </ion-card-header>
+  <ion-row >
+    <ion-col size="6"  >
+      <img src = "assets/images/hilton.jpg"alt="" />
+      <p> Hotel </p>
+    </ion-col>
+
+    <ion-col size="6" >
+      <img src = "assets/images/fun.jpeg" alt="" />
+      <p>Fun Place </p>
+    </ion-col>
+  </ion-row>
+  <ion-row >
+    <ion-col size="6"  >
+      <img src ="assets/images/resto.jpeg"alt="" />
+      <p>Restaurant</p>
+    </ion-col>
+  
+    <ion-col size="6" [routerLink]="['/category-nigeria']" >
+      <img src = "assets/images/shop.jpeg"alt="">
+      <p> Shopping </p>
+    </ion-col>
+  </ion-row>
+  

@@ -1,22 +1,6 @@
 [
-    {
-        "id" : 1,
-        "titre" :"Cameroun",
-        "path" : "assets/images/cameroun.png"
-    },
-    {
-        "id" : 2,
-        "titre" :"Afrique du sud ",
-        "path" : "assets/images/afrique du sud.jpg"
-    },
-   {
-        "id" : 3,
-        "titre" :"Côte_d'Ivoire",
-        "path" : "assets/images/Côte_dIvoire.jpg"
-   },
-   {
-        "id" : 4,
-        "titre" :"Nigeria",
-        "path" : "assets/images/Nigeria.jpg"
-   }
+    { "id": 1, "name": "Cameroun", "image": "assets/cameroun.jpeg" },
+    { "id": 2, "name": "Cote ivoire", "image": "assets/cote.jpeg" },
+    { "id": 3, "name": "nigeria", "image": "/assets/nigeria.jpeg" },
+    { "id": 4, "name": "Afrique du sud", "image": "/assets/afrique.jpg" }
 ]

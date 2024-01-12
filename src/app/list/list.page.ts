@@ -195,5 +195,9 @@ export class ListPage implements OnInit {
 
 
   }
-
+  plusdetails(hotels:any){
+    localStorage.setItem("hotels",JSON.stringify(hotels));
+    this.router.navigate(['details'])
+  }
+  
 }

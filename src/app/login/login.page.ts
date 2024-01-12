@@ -17,18 +17,15 @@ export class LoginPage implements OnInit {
     this.authService
       .SignIn(email.value, password.value)
       .then((): any => {
-        if (this.authService.isEmailVerified) {
-          this.router.navigate(['acotedemoi']);
-        } else {
-          window.alert('le mail nest pas verifié');
-          return false;
-        }
+     
+          this.router.navigate(['onglets/accueil']);
+         
       })
       .catch((error: { message: any; }) => {
         window.alert(error.message);
       });
   }
   gotosignup(){
-    this.router.navigate(['onglet/accueil'])
+    this.router.navigate(['registration'])
   }
 }

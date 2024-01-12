@@ -20,11 +20,25 @@ export class DetailsPage implements OnInit {
   [x: string]: any;
   listhotel: any[] = [];
   places :any;
+  
+  latitude: any = 0; //latitude
+  longitude: any = 0; //longitude
+  address: string;
+  private currentPosition!: { latitude: number; longitude: number; };
+  private AutorLocation!: { latitude: number; longitude: number; };
+
   constructor(  private geolocation: Geolocation,private http: HttpClient,
     private nativeGeocoder: NativeGeocoder,
     public mapsService: MapsService,
 private callNumber: CallNumber,private emailComposer: EmailComposer,private inAppBrowser: InAppBrowser) { }
   async ngOnInit() {
+ 
+    let hotels=localStorage.getItem("hotels");
+    if(hotels) {
+      this.places = JSON.parse(hotels);
+    }
+
+      
     this.mapsService.initMap('bingMap', 'Apw2frPNDQwenaJt-Qwt5nDdvYBw_wtG0r6PVoFydMmn_o4uMNjCN_4UMzJZow0w');
 
     // Récupère la position actuelle
@@ -37,15 +51,20 @@ private callNumber: CallNumber,private emailComposer: EmailComposer,private inAp
 
     // Ajoute un marqueur à la position actuelle
     this.mapsService.addMarker(this.currentPosition, 'Ma position');
-
+    this.mapsService.addMarker2(this.AutorLocation, 'AutorLocation');
     this.getAutourdemoi()
-    let hotels=localStorage.getItem("hotels");
-    if(hotels) {
-      this.places = JSON.parse(hotels);
-    }
+
+
+    // Calcul de l'itinéraire de la position actuelle à la destination
+    this.calculateAndDisplayRoute();
+
+
   }
+  number: number
   appel() { 
-    this.callNumber.callNumber('this.places.datasource.raw.contact:phone', true) .then(res =>
+   
+    console.log(this.number)
+    this.callNumber.callNumber('this.places.properties.datasource.raw.phone', true) .then(res =>
     { console.log('Launched dialer!', res)
     }) .catch(err => {
     console.log('Error launching dialer'
@@ -55,7 +74,7 @@ private callNumber: CallNumber,private emailComposer: EmailComposer,private inAp
  mail() {
     
     const email = {
-      to: 'this.places.datasource.raw.contact:email',
+      to: 'this.places.properties.datasource.raw.email',
       subject: 'Sujet de l\'e-mail',
       body: 'Message',
       isHtml: true,
@@ -63,14 +82,22 @@ private callNumber: CallNumber,private emailComposer: EmailComposer,private inAp
   
     this.emailComposer.open(email);
   }
-  latitude: any = 0; //latitude
-  longitude: any = 0; //longitude
-  address: string;
-  private currentPosition!: { latitude: number; longitude: number; };
-  private AutorLocation!: { latitude: number; longitude: number; };
 
+
+
+  openWebsite() {
+    const websiteUrl = 'this.places.properties.datasource.raw.email'; 
+    const options = '_blank'; // '_blank' opens in the InAppBrowser, '_system' opens in the system browser
   
+    const browser = this.inAppBrowser.create(websiteUrl, options);
+  }
  
+  options = {
+    timeout: 10000,
+    enableHighAccuracy: true,
+    maximumAge: 3600,
+  };
+  // use geolocation to get user's device coordinates
   getCurrentCoordinates() {
     this.geolocation
       .getCurrentPosition()
@@ -92,47 +119,68 @@ private callNumber: CallNumber,private emailComposer: EmailComposer,private inAp
       .catch((error) => {
         console.log('Error getting location', error);
       });
-    }
+  }
 
-    nativeGeocoderOptions: NativeGeocoderOptions = {
-      useLocale: true,
-      maxResults: 5,
-    }; 
-    getAddress(lat: any, long: any) {
-      this.nativeGeocoder
-        .reverseGeocode(lat, long, this.nativeGeocoderOptions)
-        .then((res: NativeGeocoderResult[]) => {
-          this.address = this.pretifyAddress(res[0]);
-          console.log("Get Adress")
-        })
-        .catch((error: any) => {
-          alert('Error getting location' + JSON.stringify(error));
-        });
-    }
-    // address
-    pretifyAddress(address: any) {
-      let obj = [];
-      let data = '';
-      for (let key in address) {
-        obj.push(address[key]);
-      }
-      obj.reverse();
-      for (let val in obj) {
-        if (obj[val].length) data += obj[val] + ', ';
-      }
-      return address.slice(0, -2);
+  calculateAndDisplayRoute(): void {
+    const map = this.mapsService.getMap();
 
-    }
+    if (map && Microsoft.Maps.Directions && Microsoft.Maps.Directions.DirectionsManager) {
+      const directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
 
+      const waypoint1 = new Microsoft.Maps.Directions.Waypoint({
+        location: new Microsoft.Maps.Location(this.currentPosition.latitude, this.currentPosition.longitude)
+      });
+
+      const waypoint2 = new Microsoft.Maps.Directions.Waypoint({
+        location: new Microsoft.Maps.Location(40.7128, -74.0060)
+      });
+
+      directionsManager.addWaypoint(waypoint1);
+      directionsManager.addWaypoint(waypoint2);
+
+      directionsManager.calculateDirections();
+    } else {
+      console.error('Erreur lors du calcul de \'itinéraire : DirectionsManager non disponible.');
+    }
+  }
+
+  // geocoder options
+  nativeGeocoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5,
+  };
+  // get address using coordinates
+  getAddress(lat: any, long: any) {
+    this.nativeGeocoder
+      .reverseGeocode(lat, long, this.nativeGeocoderOptions)
+      .then((res: NativeGeocoderResult[]) => {
+        this.address = this.pretifyAddress(res[0]);
+        console.log("Get Adress")
+      })
+      .catch((error: any) => {
+        alert('Error getting location' + JSON.stringify(error));
+      });
+  }
+  // address
+  pretifyAddress(address: any) {
+    let obj = [];
+    let data = '';
+    for (let key in address) {
+      obj.push(address[key]);
+    }
+    obj.reverse();
+    for (let val in obj) {
+      if (obj[val].length) data += obj[val] + ', ';
+    }
+    return address.slice(0, -2);
+
+  }
   listLat: any[] = []
   listLong: any[] = []
   name: any
-  private map: Microsoft.Maps.Map 
-  getMap(): Microsoft.Maps.Map | undefined {
-    return this.map;
-  }
-
+ 
   getAutourdemoi() {
+
     this.geolocation
       .getCurrentPosition()
       .then((resp) => {
@@ -146,33 +194,33 @@ private callNumber: CallNumber,private emailComposer: EmailComposer,private inAp
         };
         console.log(currentLocation)
        
+    
+        let hotels=localStorage.getItem("hotels");
+        if(hotels) {
+          this.places = JSON.parse(hotels);
+        }
+            console.log( this.places.features)
           
-            this.listLat = this.places.feature.geometry.coordinates[1]
-            this.listLong = this.places.features.geometry.coordinates[0]
-            
-            const AutorLocation =this.places.features.geometry.coordinates
+              console.log(this.places.geometry.coordinates[1])
+            const AutorLocation = this.places.geometry.coordinates
+            this.name = this.places.categories
+            this.listLat= this.places.geometry.coordinates[1]
+            this.listLong= this.places.geometry.coordinates[0]
+            this.name= this.places.properties.name
+            console.log(this.listLong,this.listLat)
             this.mapsService.centerMap(this.AutorLocation);
-            this.mapsService.addMarker2(new Microsoft.Maps.Location(this.listLat, this.listLong), this.name);
-            console.log(AutorLocation)
+            this.mapsService.addMarker2(new Microsoft.Maps.Location(this.listLat,this.listLong ), this.name);
+            })}
 
-            const directionsManager = new  Microsoft.Maps.Directions.DirectionsManager(this.map);
-            const waypoint1 = new Microsoft.Maps.Directions.Waypoint(this.latitude);
-            const waypoint2 = new Microsoft.Maps.Directions.Waypoint(this.latitude);
 
-            directionsManager.calculateDirections();
-            directionsManager.addWaypoint(waypoint1,0);
-            directionsManager.addWaypoint(waypoint2,1);
-      
-            directionsManager.calculateDirections();
-          
-       
 
-      })
-     
+    
 
 
 
 
- 
-}
+
+  
+  
+  
 }

@@ -5,7 +5,7 @@
       <ion-back-button defaulthref="accueil" >
     </ion-back-button>
     </ion-buttons>
-    <ion-title>{{places.name}}</ion-title>
+    <ion-title>{{places.properties.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,9 +16,9 @@
   </div>
   <div>
       <ion-label class="label">
-        <h2>{{places.name}}<ion-icon name="bed-outline"></ion-icon></h2>
-        <p><ion-icon name="location-outline"></ion-icon> {{places.formatted}}</p>
-        <p>{{places.datasource.raw.stars}} <ion-icon name="star-outline"> </ion-icon> </p>
+        <h2>{{places.properties.name}}<ion-icon name="bed-outline"></ion-icon></h2>
+        <p><ion-icon name="location-outline"></ion-icon> {{places.properties.formatted}}</p>
+        <p>{{places.properties.datasource.raw.stars}} <ion-icon name="star-outline"> </ion-icon> </p>
       </ion-label>
   </div>
 
@@ -28,26 +28,27 @@
 
   <div class = "menu">
     <div class = menuId>
-      <ion-item>
-       <a href="places.datasource.raw.website"> <ion-icon name="globe-outline"></ion-icon></a>
-        <p>Vist the website  </p>
+      <ion-item (click)="openWebsite()">
+        <ion-label (click)="openWebsite()"><ion-icon name="globe-outline"></ion-icon>
+          <p>Vist the website  </p></ion-label>
+        
       </ion-item>
     </div>
     <div class = menuId >
       <ion-item (click)="appel()">
-      <ion-icon name="call-outline"></ion-icon>
-      <p>Call</p></ion-item>
+        <ion-label (click)="appel()">   <ion-icon name="call-outline" ></ion-icon>
+          <p >Call</p></ion-label></ion-item>
+    
     </div>
     <div class = menuId>
+
       <ion-item (click)="mail()">
-      <ion-icon name="mail-outline"></ion-icon>
-      <p>Email</p>
+        <ion-label (click)="mail()"><ion-icon name="mail-outline"></ion-icon>
+        <p>Email</p></ion-label>
+      
     </ion-item>
     </div>
     
   </div>
-  <div>
-    <div  id="bingMap" style="height: 100%;"></div>
-  </div>
-  
+  <div  id="bingMap" style="height: 100%;"></div>
 </ion-content>

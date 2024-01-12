@@ -21,13 +21,11 @@ export class CategorySAPage implements OnInit {
 
   ngOnInit() {
 
-    let categorie = JSON.parse(localStorage.getItem('key')as string)
-
- if(categorie.id==1){
-  this.id =1
-  this.getHotel();
-
-}
+    if(this.id==1){
+      this.id =1
+      this.getHotel();
+    
+    }
     this.getHotel();
     this.getSupermarche()
     this.getLoisir()
@@ -133,5 +131,43 @@ getSupermarche(){
 plusdetails(hotels:any){
   localStorage.setItem("hotels",JSON.stringify(hotels));
   this.router.navigate(['details'])
+}
+listRestaurantcameroun :any
+listHotelcameroun:any
+listShopcameroun: any
+listLoisircameroun:any
+resultats:any
+search(event: any) {
+      
+  if (this.cat = "restaurant"){
+    let val = event.target.value; //on récupère la saisie de l’utilisateur
+    this.listRestaurantcameroun = this.resultats.filter((item: any) => {
+    let txtNom = item.properties.name;
+    return txtNom.toLowerCase().indexOf(val.toLowerCase()) > -1
+    });
+  }
+
+  if (this.cat = "hotel"){
+    let val = event.target.value; //on récupère la saisie de l’utilisateur
+    this.listHotelcameroun = this.resultats.filter((item: any) => {
+    let txtNom = item.properties.name;
+    return txtNom.toLowerCase().indexOf(val.toLowerCase()) > -1
+    });
+  }
+  if (this.cat = "shop"){
+    let val = event.target.value; //on récupère la saisie de l’utilisateur
+    this.listShopcameroun = this.resultats.filter((item: any) => {
+    let txtNom = item.properties.name;
+    return txtNom.toLowerCase().indexOf(val.toLowerCase()) > -1
+    });
+  }
+
+  if (this.cat = "loisir"){
+    let val = event.target.value; //on récupère la saisie de l’utilisateur
+    this.listLoisircameroun = this.resultats.filter((item: any) => {
+    let txtNom = item.properties.name;
+    return txtNom.toLowerCase().indexOf(val.toLowerCase()) > -1
+    });
+  }
 }
 }

@@ -3,15 +3,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="accueil"></ion-back-button>
+      <ion-back-button defaultHref="onglets/accueil"></ion-back-button>
     </ion-buttons>
-       <ion-searchbar placeholder="Rechercher" ></ion-searchbar>
+       <ion-searchbar placeholder="Rechercher" (ionInput)="search($event)" ></ion-searchbar>
       
      
      
     </ion-toolbar>
   </ion-header>
-<div *ngIf="id==1"> 
+<div >
    <div class="container">
     <ion-col size="3" class="element">
       <ion-badge color="light" class="custom-badge"  (click)="hotel()" >
@@ -65,7 +65,7 @@
         <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
         
           </ion-label>
-          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item)"> voir +</ion-button>
         </ion-item>
 
       </ion-list>
@@ -100,7 +100,7 @@
             <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
         
           </ion-label>
-          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+          <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item)"> voir +</ion-button>
         </ion-item>
 
       </ion-list>
@@ -133,7 +133,7 @@
               <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
         
             </ion-label>
-            <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+            <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item)"> voir +</ion-button>
           </ion-item>
   
         </ion-list>
@@ -166,7 +166,7 @@
                   <p><ion-icon name="location-outline"></ion-icon>{{item.properties.street}}</p>
         
                 </ion-label>
-                <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item.properties)"> voir +</ion-button>
+                <ion-button expand="block" color="success" slot="end" (click)="plusdetails(item)"> voir +</ion-button>
               </ion-item>
       
             </ion-list>
